@@ -7,6 +7,7 @@ const Scan = () => {
   const [confidence, setConfidence] = useState("");
   const [useCamera, setUseCamera] = useState(false);
   const [diseaseDescription, setDiseaseDescription] = useState(""); // State baru untuk deskripsi penyakit
+  const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
 
   const fileInputRef = useRef(null); // Ref untuk input file
 
@@ -68,7 +69,7 @@ const Scan = () => {
       const formData = new FormData();
       formData.append("image", file);
 
-      fetch("http://localhost:5000/predict", {
+      fetch(`${API_URL}/predict`, {
         method: "POST",
         body: formData,
       })
